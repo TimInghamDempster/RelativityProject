@@ -10,9 +10,6 @@ namespace RelativityProject
         public MainWindow()
         {
             DataContext = new SimulationVM(new World());
-            var graphWindow = new GraphWindow();
-            graphWindow.DataContext = DataContext;
-            graphWindow.Show();
             InitializeComponent();
         }
     }

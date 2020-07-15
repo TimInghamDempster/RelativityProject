@@ -53,7 +53,7 @@ namespace RelativityProject
             _frameCount++;
             _world.Tick();
 
-            const int sampleInterval = 10;
+            const int sampleInterval = 1;
             const int velocitySampleInterval = 50;
 
             foreach(var point in _points)
@@ -72,7 +72,7 @@ namespace RelativityProject
                 _frame1Series.Values.Add(new ObservableValue(_world.FirstClockPhase));
                 _frame2Series.Values.Add(new ObservableValue(_world.SecondClockPhase));
 
-                if (_frame1Series.Values.Count > 40)
+                if (_frame1Series.Values.Count > 300)
                 {
                     _frame1Series.Values.RemoveAt(0);
                     _frame2Series.Values.RemoveAt(0);

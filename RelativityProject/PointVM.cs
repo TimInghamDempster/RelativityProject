@@ -12,7 +12,13 @@ namespace RelativityProject
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public double X => (_point.Position.X * _xZoomFactor) % _width;
+        public double X
+        {
+            get
+            {
+                return (_point.Position.X * _xZoomFactor) % (_width * 2.0 / 3.0);
+            }
+        }
 
         public double Y => _point.Position.Y * _yZoomFactor;
         public Brush Brush { get; }
