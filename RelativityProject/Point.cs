@@ -1,4 +1,7 @@
-﻿namespace RelativityProject
+﻿using System;
+using System.Windows;
+
+namespace RelativityProject
 {
     public class Point : ITickable
     {
@@ -12,6 +15,21 @@
         public Vec4 Velocity { get; set; } = new Vec4();
 
         public void Tick()
+        {
+            IntegratePosition();
+            EnforceFourVelocity();
+        }
+
+        private void EnforceFourVelocity()
+        {
+            Velocity.T = Math.Sqrt(1.0 - (Math.Pow(Velocity.X, 2.0) + Math.Pow(Velocity.Y, 2.0) + Math.Pow(Velocity.Z, 2.0)));
+            if(double.IsNaN(Velocity.T))
+            {
+                throw new ArgumentException("Velocity exceeded C");
+            }
+        }
+
+        private void IntegratePosition()
         {
             Position += Velocity;
         }

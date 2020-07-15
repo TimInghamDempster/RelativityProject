@@ -28,6 +28,9 @@
                 <charts:CartesianChart.AxisX>
                     <charts:Axis MaxValue="300" />
                 </charts:CartesianChart.AxisX>
+                <charts:CartesianChart.AxisY>
+                    <charts:Axis LabelFormatter="{Binding LabelFormatter}"/>
+                </charts:CartesianChart.AxisY>
             </charts:CartesianChart>
             <charts:CartesianChart Series="{Binding Frame2SeriesCollection}" DisableAnimations="True" Grid.Column="0" Grid.Row="1">
                 <charts:CartesianChart.Resources>
@@ -40,6 +43,24 @@
                 <charts:CartesianChart.AxisX>
                     <charts:Axis MaxValue="300" />
                 </charts:CartesianChart.AxisX>
+                <charts:CartesianChart.AxisY>
+                    <charts:Axis LabelFormatter="{Binding LabelFormatter}"/>
+                </charts:CartesianChart.AxisY>
+            </charts:CartesianChart>
+            <charts:CartesianChart Series="{Binding Frame2VelocityCollection}" DisableAnimations="True" Grid.Column="0" Grid.Row="2">
+                <charts:CartesianChart.Resources>
+                    <Style TargetType="charts:LineSeries">
+                        <Setter Property="PointGeometrySize" Value="0"/>
+                        <Setter Property="LineSmoothness" Value="1"/>
+                        <Setter Property="Stroke" Value="Red"/>
+                    </Style>
+                </charts:CartesianChart.Resources>
+                <charts:CartesianChart.AxisX>
+                    <charts:Axis MaxValue="500" />
+                </charts:CartesianChart.AxisX>
+                <charts:CartesianChart.AxisY>
+                    <charts:Axis MaxValue="1.1" LabelFormatter="{Binding LabelFormatter}"/>
+                </charts:CartesianChart.AxisY>
             </charts:CartesianChart>
         </Grid>
         <ItemsControl ItemsSource="{Binding Points}" Background="Black" Grid.Column="1">

@@ -21,8 +21,8 @@ namespace RelativityProject
 
         public World()
         {
-            var p1 = new Point(new Vec4() { X = 10, Y = 0.0001 }, new Vec4() { T = 1 });
-            var p2 = new Point(new Vec4() { X = 10, Y = 0.0002 }, new Vec4() { T = 1 });
+            var p1 = new Point(new Vec4() { X = 540, Y = 0.0001 }, new Vec4() { T = 1 });
+            var p2 = new Point(new Vec4() { X = 540, Y = 0.0002 }, new Vec4() { T = 1 });
             _frame1.Add(p1);
             _frame1.Add(p2);
 
@@ -30,13 +30,13 @@ namespace RelativityProject
             _springs.Add(s1);
 
 
-            var p3 = new Point(new Vec4() { X = 10, Y = 0.0005 }, new Vec4() { T = 1 });
-            var p4 = new Point(new Vec4() { X = 10, Y = 0.0006 }, new Vec4() { T = 1 });
+            var p3 = new Point(new Vec4() { X = 10, Y = 0.0005 }, new Vec4() { X = 0.5, T = 1 });
+            var p4 = new Point(new Vec4() { X = 10, Y = 0.0006 }, new Vec4() { X = 0.5, T = 1 });
             _frame2.Add(p3);
             _frame2.Add(p4);
 
             var s2 = new Spring(p3, p4);
-            _springs.Add(s1);
+            _springs.Add(s2);
 
             _tickables.Add(p1);
             _tickables.Add(p2);
@@ -48,14 +48,14 @@ namespace RelativityProject
 
         internal void Tick()
         {
-            const double frame2Force = 0.001;
+            const double frame2Force = 0.00001;
             foreach(var tickable in _tickables)
             {
                 tickable.Tick();
             }
             foreach(var point in _frame2)
             {
-                point.Velocity.X += frame2Force;
+                point.Velocity.X += frame2Force * point.Velocity.T;
             }
         }
     }

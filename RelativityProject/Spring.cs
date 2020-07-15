@@ -15,7 +15,7 @@
 
         public void Tick()
         {
-            const double k = 0.001;
+            const double k = 0.000005;
             Vec4 delta = _pointA.Position - _pointB.Position;
 
             // We should only be applying this between points at the
@@ -25,8 +25,8 @@
 
             Length = delta.SpatialLength;
 
-            _pointA.Velocity -= delta * k;
-            _pointB.Velocity += delta * k;
+            _pointA.Velocity -= delta * k * _pointA.Velocity.T;
+            _pointB.Velocity += delta * k * _pointB.Velocity.T;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace RelativityProject
         public MainWindow()
         {
             DataContext = new SimulationVM(new World());
+            WindowState = WindowState.Maximized;
             InitializeComponent();
         }
     }

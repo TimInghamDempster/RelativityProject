@@ -6,7 +6,7 @@ namespace RelativityProject
     public class PointVM : IPointVM
     {
         private const double _yZoomFactor = 1000000;
-        private const double _xZoomFactor = 10;
+        private const double _xZoomFactor = 1;
         private const double _width = 1900;
         private Point _point;
 
