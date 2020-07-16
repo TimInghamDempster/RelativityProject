@@ -5,14 +5,17 @@ namespace RelativityProject
 {
     public class Point : ITickable
     {
-        public Point(Vec4 pos, Vec4 vel)
+        private readonly double _timestep;
+        public Point(Vec4 pos, Vec4 vel, double timestep)
         {
             Position = pos;
             Velocity = vel;
+            _timestep = timestep;
         }
 
         public Vec4 Position { get; private set; } = new Vec4();
-        public Vec4 Velocity { get; set; } = new Vec4();
+        public Vec4 Velocity { get; private set; } = new Vec4();
+        public Vec4 Acceleration { get; set; } = new Vec4();
 
         public void Tick()
         {
@@ -31,7 +34,9 @@ namespace RelativityProject
 
         private void IntegratePosition()
         {
-            Position += Velocity;
+            Velocity += Acceleration * Velocity.T * _timestep;
+            Position += Velocity * _timestep;
+            Acceleration = Vec4.Zero;
         }
     }
 }

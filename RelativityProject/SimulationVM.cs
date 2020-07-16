@@ -22,15 +22,16 @@ namespace RelativityProject
         public SeriesCollection Frame2SeriesCollection { get; } = new SeriesCollection();
         private readonly Series _frame2Series;
         public SeriesCollection Frame2VelocityCollection { get; } = new SeriesCollection();
+
         private readonly Series _frame2VelocitySeries;
-        private const int _ticksPerDraw = 10;
+        private readonly int _ticksPerDraw;
         private int _frameCount = 0;
 
-        public SimulationVM(World world)
+        public SimulationVM(World world, int ticksPerDraw)
         {
             _world = world;
 
-            foreach(var point in world.Frame1)
+            foreach (var point in world.Frame1)
             {
                 _points.Add(new PointVM(true, point));
             }
@@ -48,6 +49,7 @@ namespace RelativityProject
             Frame2SeriesCollection.Add(_frame2Series);
             _frame2VelocitySeries = new LineSeries() { Values = new ChartValues<ObservableValue>() };
             Frame2VelocityCollection.Add(_frame2VelocitySeries);
+            _ticksPerDraw = ticksPerDraw;
         }
 
         private void OnRender(object sender, EventArgs e)
@@ -64,8 +66,8 @@ namespace RelativityProject
             _frameCount++;
             _world.Tick();
 
-            const int sampleInterval = 1 * _ticksPerDraw;
-            const int velocitySampleInterval = 50 * _ticksPerDraw;
+            int sampleInterval = 1 * _ticksPerDraw;
+            int velocitySampleInterval = 50 * _ticksPerDraw;
 
             foreach(var point in _points)
             {

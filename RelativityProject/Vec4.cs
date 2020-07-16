@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RelativityProject
 {
@@ -17,5 +18,7 @@ namespace RelativityProject
 
         internal double SpatialLength =>
             Math.Sqrt((X * X) + (Y * Y) + (Z * Z));
+
+        public static Vec4 Zero => new Vec4();
     }
 }

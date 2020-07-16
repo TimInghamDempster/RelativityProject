@@ -9,7 +9,8 @@ namespace RelativityProject
     {
         public MainWindow()
         {
-            DataContext = new SimulationVM(new World());
+            var ticksPerDraw = 200.0;
+            DataContext = new SimulationVM(new World(1.0 / ticksPerDraw), (int)ticksPerDraw);
             WindowState = WindowState.Maximized;
             InitializeComponent();
         }

@@ -56,7 +56,7 @@
                     </Style>
                 </charts:CartesianChart.Resources>
                 <charts:CartesianChart.AxisX>
-                    <charts:Axis MaxValue="500" />
+                    <charts:Axis MaxValue="110" />
                 </charts:CartesianChart.AxisX>
                 <charts:CartesianChart.AxisY>
                     <charts:Axis MaxValue="1.1" LabelFormatter="{Binding LabelFormatter}"/>

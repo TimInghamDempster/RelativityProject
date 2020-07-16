@@ -19,10 +19,10 @@ namespace RelativityProject
         private readonly List<Spring> _springs = new List<Spring>();
         private readonly List<ITickable> _tickables = new List<ITickable>();
 
-        public World()
+        public World(double timestep)
         {
-            var p1 = new Point(new Vec4() { X = 540, Y = 0.0001 }, new Vec4() { T = 1 });
-            var p2 = new Point(new Vec4() { X = 540, Y = 0.0002 }, new Vec4() { T = 1 });
+            var p1 = new Point(new Vec4() { X = 54, Y = 0.0001 }, new Vec4() { T = 1 }, timestep);
+            var p2 = new Point(new Vec4() { X = 54, Y = 0.0002 }, new Vec4() { T = 1 }, timestep);
             _frame1.Add(p1);
             _frame1.Add(p2);
 
@@ -30,8 +30,8 @@ namespace RelativityProject
             _springs.Add(s1);
 
 
-            var p3 = new Point(new Vec4() { X = 10, Y = 0.0005 }, new Vec4() { X = 0.5, T = 1 });
-            var p4 = new Point(new Vec4() { X = 10, Y = 0.0006 }, new Vec4() { X = 0.5, T = 1 });
+            var p3 = new Point(new Vec4() { X = 54, Y = 0.0005 }, new Vec4() { T = 1 }, timestep);
+            var p4 = new Point(new Vec4() { X = 54, Y = 0.0006 }, new Vec4() { T = 1 }, timestep);
             _frame2.Add(p3);
             _frame2.Add(p4);
 
@@ -48,14 +48,14 @@ namespace RelativityProject
 
         internal void Tick()
         {
-            const double frame2Force = 0.00001;
+            const double frame2Force = 0.0003;
             foreach(var tickable in _tickables)
             {
                 tickable.Tick();
             }
             foreach(var point in _frame2)
             {
-                point.Velocity.X += frame2Force * point.Velocity.T;
+                point.Acceleration.X += frame2Force;
             }
         }
     }
